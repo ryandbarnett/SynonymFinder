@@ -1,28 +1,63 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header />
+    <Form />
+    <div v-if="results.length">
+      <Results v-bind:results="results" />
+    </div>
+    <h2 v-if="error">{{ error }}</h2>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header';
+import Form from './components/Form';
+import Results from './components/Results';
+import fetchData from './utils/fetchData';
 
 export default {
   name: 'app',
+  data() {
+    return {
+      results: [],
+      error: ''
+    }
+  },
   components: {
-    HelloWorld
+    Header,
+    Form,
+    Results
+  },
+  mounted() {
+    this.getSynonyms();
+  },
+  methods: {
+    getSynonyms() {
+      const {VUE_APP_BASE_URL, VUE_APP_KEY} = process.env;
+      const url = `${VUE_APP_BASE_URL}umpire?key=${VUE_APP_KEY}`;
+      fetchData(url).then((results) => {
+        if (!!results && !!results[0].meta) {
+          this.results = results;
+          this.error = '';
+        } else {
+          this.results = [];
+          this.error = 'No synonyms found :(';
+        }
+      });
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
 }
 </style>
