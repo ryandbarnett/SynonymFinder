@@ -1,7 +1,7 @@
 <template>
   <div>
-    <ul v-bind:key="index" v-for="(synonym, index) in synonyms">
-      <Synonym v-bind:synonym="synonym" v-on:click="emitClick"/>
+    <ul class="Synonyms">
+      <Synonym v-bind:key="index" v-for="(synonym, index) in synonyms" v-bind:synonym="synonym" v-on:click="emitClick"/>
     </ul>
   </div>
 </template>
@@ -22,3 +22,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .Synonyms {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>
