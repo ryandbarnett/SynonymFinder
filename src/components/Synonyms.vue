@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul v-for="(synonym, index) in synonyms">
-      <Synonym v-bind:key="index" v-bind:synonym="synonym" />
+      <Synonym v-bind:key="index" v-bind:synonym="synonym" v-on:click="emitClick"/>
     </ul>
   </div>
 </template>
@@ -14,6 +14,11 @@ export default {
   components: {
     Synonym
   },
-  props: ['synonyms']
+  props: ['synonyms'],
+  methods: {
+    emitClick(value) {
+      this.$emit('click', value);
+    }
+  }
 }
 </script>
