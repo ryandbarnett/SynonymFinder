@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>{{result.shortdef[0]}}</h3>
-    <Synonyms v-bind:synonyms="result.meta.syns[0]" />
+    <Synonyms v-bind:synonyms="result.meta.syns[0]" v-on:click="emitClick" />
   </div>
 </template>
 
@@ -13,6 +13,11 @@ export default {
   components: {
     Synonyms
   },
-  props: ['result']
+  props: ['result'],
+  methods: {
+    emitClick(value) {
+      this.$emit('click', value);
+    }
+  }
 }
 </script>
