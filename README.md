@@ -10,3 +10,4 @@ The major goal of this project was to build a project in the Vue.js framework. S
 
 ## Screenshots
 
+![image of synonymFinder app](./src/assets/synonymFinder.png)
