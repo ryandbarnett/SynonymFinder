@@ -1,9 +1,7 @@
 <template>
-  <div>
+  <div class="Results">
     <h2>Results for "{{results[0].meta.id}}"</h2>
-    <div v-bind:key="result.meta.uuid" v-for="result in results">
-      <Result v-bind:result="result" v-on:click="emitClick" />
-    </div>
+    <Result v-bind:key="result.meta.uuid" v-bind:result="result" v-on:click="emitClick" v-for="result in results" />
   </div>
 </template>
 
@@ -23,3 +21,16 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  h2 {
+    text-align: center;
+    text-transform: uppercase;
+    color: #F1FAEE;
+    text-shadow: 0px 2px 2px #1D3557;
+  }
+
+  .Results {
+    
+  }
+</style>
