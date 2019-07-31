@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <Header />
-    <Form />
+    <Form v-model="value" v-on:submit="getSynonyms(value)" />
     <div v-if="results.length">
-      <Results v-bind:results="results" />
+      <Results v-bind:results="results" v-on:click="handleClick"/>
     </div>
     <h2 v-if="error">{{ error }}</h2>
   </div>
@@ -19,6 +19,7 @@ export default {
   name: 'app',
   data() {
     return {
+      value: '',
       results: [],
       error: ''
     }
@@ -28,13 +29,10 @@ export default {
     Form,
     Results
   },
-  mounted() {
-    this.getSynonyms();
-  },
   methods: {
-    getSynonyms() {
+    getSynonyms(value) {
       const {VUE_APP_BASE_URL, VUE_APP_KEY} = process.env;
-      const url = `${VUE_APP_BASE_URL}umpire?key=${VUE_APP_KEY}`;
+      const url = `${VUE_APP_BASE_URL}${value}?key=${VUE_APP_KEY}`;
       fetchData(url).then((results) => {
         if (!!results && !!results[0].meta) {
           this.results = results;
@@ -44,6 +42,10 @@ export default {
           this.error = 'No synonyms found :(';
         }
       });
+    },
+    handleClick(value) {
+      this.value = value;
+      this.getSynonyms(value);
     }
   }
 }
