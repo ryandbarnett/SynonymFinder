@@ -1,29 +1,12 @@
-# synonyms
+# SynonymFinder
 
-## Project setup
-```
-npm install
-```
+## Description
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+A project that allows users to search for synonyms using the Merriam-Webster Thesaurus.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Learning Goals
 
-### Run your tests
-```
-npm run test
-```
+The major goal of this project was to build a project in the Vue.js framework. Since I usually use React this project demonstrates that I can create a project using a different framework in a short time (1 week).
 
-### Lints and fixes files
-```
-npm run lint
-```
+## Screenshots
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
